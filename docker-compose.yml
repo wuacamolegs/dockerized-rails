@@ -5,6 +5,7 @@ services:
     build: .
     ports: 
       - '3000:3000'
+      - '4000:4000' # capybara port
     volumes:
       - .:/usr/src/app
     env_file:
@@ -12,12 +13,14 @@ services:
       - .env/development/web
     environment: 
       - WEBPACKER_DEV_SERVER_HOST=webpack_dev_server
+    depends_on:
+      - selenium_chrome
   
   webpack_dev_server:
     build: .
     command: ./bin/webpack-dev-server
     ports:
-      - 3035:3035
+      - '3035:3035'
     volumes:
       - .:/usr/src/app
     env_file:
@@ -36,5 +39,10 @@ services:
     env_file:
       - .env/development/database
   
+  selenium_chrome:
+    image: selenium/standalone-chrome-debug
+    ports: 
+      - "5900:5900"
+
 volumes:
   db_data:

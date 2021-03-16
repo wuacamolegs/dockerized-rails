@@ -7,7 +7,6 @@ ruby '2.6.6'
 gem 'rails', '~> 6.1.1'
 
 gem 'pg'
-
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
@@ -30,8 +29,12 @@ gem 'redis', '~> 4.0'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do
+  gem 'rspec-rails', '~> 4.0.0'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+
+  gem 'capybara', '~> 3.7'
+  gem 'selenium-webdriver', '~> 3.14'
 end
 
 group :development do
